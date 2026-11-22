@@ -4,6 +4,8 @@ Replacement firmware for the Pimoroni [Enviro Urban](https://shop.pimoroni.com/p
 
 ![The dashboard for one board, charging](docs/images/dashboard.png)
 
+The story behind it, the numbers from the first board and the things that went wrong along the way are in the write-up: [Pimoroni Enviro Urban Battery Drain: Low-Power MicroPython Firmware and a Battery Dashboard](https://exitcode0.net/posts/pimoroni-enviro-urban-low-power-firmware-battery-life/).
+
 There are two parts, and you can use either without the other.
 
 - **`firmware/`** is MicroPython for the board. Each wake it reads the sensors, sends one MQTT message and cuts its own power.
@@ -184,5 +186,7 @@ MIT. See [LICENSE](LICENSE).
 
 - The firmware replaces [pimoroni/enviro](https://github.com/pimoroni/enviro) (MIT) and owes its understanding of the board to that project, its schematic and its issue threads.
 - `firmware/lib/umqtt/simple.py` is from [micropython-lib](https://github.com/micropython/micropython-lib) (MIT).
+
+- The write-up is on [exitcode0.net](https://exitcode0.net/posts/pimoroni-enviro-urban-low-power-firmware-battery-life/).
 
 This project isn't affiliated with Pimoroni or Adafruit.
