@@ -1,7 +1,8 @@
 # Build the web page.
 FROM node:26-slim AS web
 WORKDIR /src
-RUN corepack enable
+# Node 25 and later no longer ship corepack, so install pnpm directly.
+RUN npm install -g pnpm@9.15.9
 COPY frontend/package.json frontend/pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY frontend/ ./
