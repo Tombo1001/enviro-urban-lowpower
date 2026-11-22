@@ -196,7 +196,7 @@ const sevLabel: Record<string, string> = { critical: 'Critical', serious: 'Serio
           </div>
           <BoardFigure
             src="img/charger" alt="Adafruit Micro Lipo charger" caption="" labels="right" :callouts="charger" :pulse="latest.ts"
-            :img-left="narrow ? 35 : 36.5" :img-width="narrow ? 30 : 27" :img-aspect="490 / 390" :aspect="narrow ? 1.5 : 3.6" :dim="!charge"
+            :img-left="narrow ? 39.5 : 40.5" :img-width="narrow ? 21 : 19" :img-aspect="490 / 390" :aspect="narrow ? 1.5 : 3.6" :dim="!charge"
           />
           <SettingsDialog
             ref="rateDialog" title="Charge rate" unit="mA" :options="[100, 500]"
@@ -211,14 +211,14 @@ const sevLabel: Record<string, string> = { critical: 'Critical', serious: 'Serio
         <p v-if="!data.events.length" class="none">
           Nothing flagged in {{ data.stats.wakes }} wakes over {{ span((data.stats.span_h ?? 0) * 3600) }}.
         </p>
-        <ul v-else>
-          <li v-for="(e, i) in data.events.slice(0, 12)" :key="i">
+        <ul v-else tabindex="0" :aria-label="`${data.events.length} faults and notices, newest first`">
+          <li v-for="(e, i) in data.events" :key="i">
             <span class="sev" :class="e.severity"><i />{{ sevLabel[e.severity] }}</span>
             <span class="what">{{ e.text }}<code v-if="e.detail">{{ e.detail }}</code></span>
             <time class="num">{{ dateTime(e.ts) }}</time>
           </li>
         </ul>
-        <p v-if="data.events.length > 12" class="more">{{ data.events.length - 12 }} older entries not shown.</p>
+        <p v-if="data.events.length > 4" class="more">{{ data.events.length }} entries, newest first. Scroll for older ones.</p>
       </section>
 
         </div>
@@ -313,7 +313,11 @@ const sevLabel: Record<string, string> = { critical: 'Critical', serious: 'Serio
 .diagram { background: var(--white); }
 .chargerhead { display: flex; justify-content: space-between; align-items: center; margin: 22px 0 10px; padding-top: 16px; border-top: 1px solid var(--grid); }
 .boards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
-.events ul { list-style: none; margin: 10px 0 0; padding: 0; }
+/* Four rows show. Older entries scroll. */
+.events ul { list-style: none; margin: 10px 0 0; padding: 0 10px 0 0; max-height: 150px; overflow-y: auto; scrollbar-gutter: stable; }
+.events ul:focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; }
+.events li:first-child { border-top: 0; }
+.more { margin-top: 8px; }
 .events li { display: grid; grid-template-columns: 96px 1fr auto; gap: 12px; padding: 8px 0; border-top: 1px solid var(--grid); font-size: 13.5px; align-items: baseline; }
 .events time, .more { color: var(--muted); font-size: 12.5px; }
 .none { margin-top: 8px; font-size: 13.5px; color: var(--ink-2); }
@@ -346,5 +350,6 @@ footer { font-size: 12px; color: var(--muted); }
   .boards { grid-template-columns: 1fr; gap: 26px; }
   .charts { grid-template-columns: minmax(0, 1fr); }
   .events li { grid-template-columns: 1fr; gap: 2px; }
+  .events ul { max-height: 300px; }
 }
 </style>
