@@ -1,2 +1,2 @@
 # Only needed to crop the product photos. Without it the page uses drawn diagrams.
-pillow==12.1.1
+pillow==13.0.0
