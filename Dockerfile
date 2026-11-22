@@ -8,7 +8,7 @@ COPY frontend/ ./
 RUN pnpm build
 
 # The server: Python standard library, plus Pillow for the optional photos.
-FROM python:3.13-slim
+FROM python:3.15-slim
 ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 \
     DATA_DIR=/data STATIC_DIR=/app/static FIRMWARE_DIR=/firmware PORT=8870
 COPY app/requirements.txt /tmp/requirements.txt
