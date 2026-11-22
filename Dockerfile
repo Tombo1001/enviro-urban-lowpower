@@ -1,5 +1,5 @@
 # Build the web page.
-FROM node:24-slim AS web
+FROM node:26-slim AS web
 WORKDIR /src
 RUN corepack enable
 COPY frontend/package.json frontend/pnpm-lock.yaml ./
