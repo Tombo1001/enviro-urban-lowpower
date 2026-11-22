@@ -1,0 +1,1 @@
+`simple.py` is `umqtt.simple` from [micropython-lib](https://github.com/micropython/micropython-lib/tree/master/micropython/umqtt.simple), copied unchanged. It is MIT licensed, copyright Paul Sokolovsky and the micropython-lib contributors. It is included because stock MicroPython for the Pico W does not ship it.

@@ -1,0 +1,17 @@
+# Enviro Urban dashboard: logs the boards' MQTT messages and serves the page.
+#
+#   cp .env.example .env    # then fill in your broker
+#   docker compose up -d    # the page is on http://<this machine>:8870
+name: enviro-urban
+services:
+  dashboard:
+    image: ghcr.io/tombo1001/enviro-urban-lowpower:latest
+    build: .
+    container_name: enviro-dashboard
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8870:8870"
+    volumes:
+      # The message log, settings and fetched photos. Back this folder up.
+      - ./data:/data

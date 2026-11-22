@@ -1,0 +1,23 @@
+# Your own data and secrets
+.env
+/data/
+/state/
+compose.override.yaml
+
+# Build output and dependencies
+node_modules/
+frontend/dist/
+__pycache__/
+*.pyc
+
+# Local scratch
+/screenshots/
+*.zip
+*.bak-*
+
+# Files from the first, stand-alone version of the logger on the author's server
+/legacy/
+/web/
+/logger.py
+/report.py
+/CONTEXT.md
